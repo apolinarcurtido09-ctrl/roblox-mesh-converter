@@ -54,4 +54,10 @@ for(let i=0;i<64;i++){
 
 }
 
-info.textContent = texto;
+info.textContent = texto; function leerFloat(bytes, offset){
+
+    const view = new DataView(bytes.buffer);
+
+    return view.getFloat32(offset, true);
+
+}
