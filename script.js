@@ -2,11 +2,19 @@ const input = document.getElementById("meshInput");
 const button = document.getElementById("readBtn");
 const info = document.getElementById("info");
 
-button.onclick = async () => {
+function leerFloat(bytes, offset){
+
+    const view = new DataView(bytes.buffer);
+
+    return view.getFloat32(offset, true);
+
+}
+
+button.onclick = async ()=>{
 
     const file = input.files[0];
 
-    if (!file) {
+    if(!file){
         alert("Selecciona un archivo.");
         return;
     }
@@ -15,52 +23,19 @@ button.onclick = async () => {
 
     const bytes = new Uint8Array(buffer);
 
-    const header = new TextDecoder().decode(bytes.slice(0, 32));
+    let texto = "";
 
-    let hex = "";
+    for(let i=28;i<100;i+=4){
 
-    const mostrar = Math.min(256, bytes.length);
-
-    for(let i=0;i<mostrar;i++){
-
-        if(i%16===0){
-
-            hex += "\n"+i.toString(16).padStart(4,"0")+": ";
-
-        }
-
-        hex += bytes[i].toString(16).padStart(2,"0")+" ";
+        texto +=
+        "Offset "
+        + i
+        + " = "
+        + leerFloat(bytes,i)
+        + "\n";
 
     }
 
-    info.textContent =
-`Archivo: ${file.name}
-let texto = "";
+    info.textContent = texto;
 
-for(let i=28;i<100;i+=4){
-
-    texto +=
-    i +
-    " : " +
-    leerFloat(bytes,i) +
-    "\n";
-
-}
-
-info.textContent = texto;
-Tamaño: ${file.size} bytes
-
-Cabecera:
-
-${header}
-
-Primeros ${mostrar} bytes:
-
-${hex}`;
-function leerFloat(bytes, offset){
-
-    const view = new DataView(bytes.buffer);
-
-    return view.getFloat32(offset, true);
-
-}
+};
