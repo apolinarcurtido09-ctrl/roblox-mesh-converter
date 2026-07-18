@@ -1,50 +1,24 @@
+alert("script.js cargado");
+
 const input = document.getElementById("meshInput");
 const button = document.getElementById("readBtn");
 const info = document.getElementById("info");
 
-function leerFloat(bytes, offset){
+button.addEventListener("click", async () => {
 
-    const view = new DataView(bytes.buffer);
-
-    return {
-        little: view.getFloat32(offset, true),
-        big: view.getFloat32(offset, false)
-    };
-
-}
-
-button.onclick = async ()=>{
+    alert("Botón pulsado");
 
     const file = input.files[0];
 
-    if(!file){
-        info.textContent="No seleccionaste ningún archivo.";
+    if (!file) {
+        info.textContent = "No seleccionaste ningún archivo.";
         return;
     }
 
-    const buffer = await file.arrayBuffer();
+    info.textContent =
+`Archivo:
+${file.name}
 
-    const bytes = new Uint8Array(buffer);
-
-    let texto="";
-
-    for(let i=0;i<128;i+=4){
-
-        const f=leerFloat(bytes,i);
-
-        texto +=
-`Offset ${i}
-
-Little: ${f.little}
-
-Big: ${f.big}
-
-----------------
-
-`;
-
-    }
-
-    info.textContent=texto;
-
-};
+Tamaño:
+${file.size} bytes`;
+});
