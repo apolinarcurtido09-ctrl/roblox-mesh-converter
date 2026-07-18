@@ -46,3 +46,12 @@ Primeros ${mostrar} bytes:
 
 ${hex}`;
 }
+let texto = "";
+
+for(let i=0;i<64;i++){
+
+    texto += bytes[i] + " ";
+
+}
+
+info.textContent = texto;
