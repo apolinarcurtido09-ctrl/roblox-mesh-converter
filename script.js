@@ -2,41 +2,47 @@ const input = document.getElementById("meshInput");
 const button = document.getElementById("readBtn");
 const info = document.getElementById("info");
 
-button.onclick = async ()=>{
+button.onclick = async () => {
 
-const file = input.files[0];
+    const file = input.files[0];
 
-if(!file){
+    if (!file) {
+        alert("Selecciona un archivo.");
+        return;
+    }
 
-alert("Selecciona un archivo.");
+    const buffer = await file.arrayBuffer();
 
-return;
+    const bytes = new Uint8Array(buffer);
 
-}
+    const header = new TextDecoder().decode(bytes.slice(0, 32));
 
-const buffer = await file.arrayBuffer();
+    let hex = "";
 
-const bytes = new Uint8Array(buffer);
+    const mostrar = Math.min(256, bytes.length);
 
-// Intentamos leer los primeros 32 bytes como texto
+    for(let i=0;i<mostrar;i++){
 
-const header = new TextDecoder().decode(
-bytes.slice(0,32)
-);
+        if(i%16===0){
 
-info.innerHTML=
-`
-Archivo:
+            hex += "\n"+i.toString(16).padStart(4,"0")+": ";
 
-${file.name}
+        }
 
-Tamaño:
+        hex += bytes[i].toString(16).padStart(2,"0")+" ";
 
-${file.size} bytes
+    }
+
+    info.textContent =
+`Archivo: ${file.name}
+
+Tamaño: ${file.size} bytes
 
 Cabecera:
 
 ${header}
-`;
 
-};
+Primeros ${mostrar} bytes:
+
+${hex}`;
+}
