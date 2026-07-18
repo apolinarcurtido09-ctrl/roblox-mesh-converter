@@ -35,7 +35,19 @@ button.onclick = async () => {
 
     info.textContent =
 `Archivo: ${file.name}
+let texto = "";
 
+for(let i=28;i<100;i+=4){
+
+    texto +=
+    i +
+    " : " +
+    leerFloat(bytes,i) +
+    "\n";
+
+}
+
+info.textContent = texto;
 Tamaño: ${file.size} bytes
 
 Cabecera:
@@ -45,16 +57,7 @@ ${header}
 Primeros ${mostrar} bytes:
 
 ${hex}`;
-}
-let texto = "";
-
-for(let i=0;i<64;i++){
-
-    texto += bytes[i] + " ";
-
-}
-
-info.textContent = texto; function leerFloat(bytes, offset){
+function leerFloat(bytes, offset){
 
     const view = new DataView(bytes.buffer);
 
