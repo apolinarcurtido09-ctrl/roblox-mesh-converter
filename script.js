@@ -21,8 +21,6 @@ button.onclick = async () => {
 
     let texto = "";
 
-    let texto = "";
-
 for(let i = 0; i < 256; i += 4){
 
     let valor = leerFloat(bytes, i);
