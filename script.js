@@ -21,9 +21,19 @@ button.onclick = async () => {
 
     let texto = "";
 
-    for (let i = 28; i < 100; i += 4) {
-        texto += "Offset " + i + " = " + leerFloat(bytes, i) + "\n";
-    }
+    let texto = "";
 
-    info.textContent = texto;
-};
+for(let i = 0; i < 256; i += 4){
+
+    let valor = leerFloat(bytes, i);
+
+    texto +=
+        "Offset "
+        + i.toString().padStart(3," ")
+        + " = "
+        + valor
+        + "\n";
+
+}
+
+info.textContent = texto;
