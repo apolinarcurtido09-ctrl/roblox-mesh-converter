@@ -1,32 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Roblox Mesh Studio</title>
 
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
+<header>
+
 <h1>🧊 Roblox Mesh Studio</h1>
 
-<div class="panel">
+<p class="version">
+Version 0.1.0
+</p>
 
-<input type="file" id="meshInput">
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Abrir archivo</h2>
+
+<input
+type="file"
+id="meshInput"
+accept=".mesh">
 
 <button id="readBtn">
-Leer Mesh
+
+Abrir Mesh
+
 </button>
 
 </div>
 
-<div id="info">
+<div class="card">
+
+<h2>Información</h2>
+
+<pre id="info">
+
 Esperando archivo...
+
+</pre>
+
+</div>
+
 </div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
