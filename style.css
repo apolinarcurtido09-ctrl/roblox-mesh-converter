@@ -1,18 +1,38 @@
+/*
+======================================
+ Roblox Mesh Studio
+ Version: 0.1.2
+ Estado: Estable
+======================================
+*/
+
 *{
-
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
+}
+
+:root{
+
+--bg:#181818;
+--card:#252525;
+--card2:#2e2e2e;
+
+--text:#ffffff;
+--text2:#bdbdbd;
+
+--primary:#2f88ff;
+--primaryHover:#58a2ff;
+
+--radius:12px;
 
 }
 
 body{
 
-background:#181818;
+background:var(--bg);
 
-color:white;
+color:var(--text);
 
 font-family:Arial,Helvetica,sans-serif;
 
@@ -30,9 +50,11 @@ margin-bottom:30px;
 
 .version{
 
-opacity:.7;
+color:var(--text2);
 
 margin-top:5px;
+
+font-size:14px;
 
 }
 
@@ -52,19 +74,43 @@ margin:auto;
 
 .card{
 
-background:#252525;
+background:var(--card);
 
-border-radius:12px;
+border-radius:var(--radius);
 
 padding:20px;
 
 box-shadow:0 0 15px rgba(0,0,0,.35);
+
+transition:.25s;
+
+}
+
+.card:hover{
+
+background:var(--card2);
+
+}
+
+h1{
+
+font-size:34px;
+
+margin-bottom:6px;
 
 }
 
 h2{
 
 margin-bottom:15px;
+
+font-size:22px;
+
+}
+
+p{
+
+line-height:1.6;
 
 }
 
@@ -73,6 +119,16 @@ input{
 width:100%;
 
 margin-bottom:15px;
+
+padding:10px;
+
+border:none;
+
+border-radius:8px;
+
+background:#333;
+
+color:white;
 
 }
 
@@ -90,15 +146,23 @@ border:none;
 
 border-radius:8px;
 
-background:#2f88ff;
+background:var(--primary);
 
 color:white;
+
+transition:.25s;
 
 }
 
 button:hover{
 
-background:#58a2ff;
+background:var(--primaryHover);
+
+}
+
+button:active{
+
+transform:scale(.98);
 
 }
 
@@ -109,5 +173,39 @@ white-space:pre-wrap;
 word-break:break-word;
 
 font-size:15px;
+
+line-height:1.5;
+
+}
+
+footer{
+
+margin-top:40px;
+
+text-align:center;
+
+color:var(--text2);
+
+font-size:14px;
+
+}
+
+/* ===== Futuras versiones ===== */
+
+.panel{
+
+display:none;
+
+}
+
+.hidden{
+
+display:none;
+
+}
+
+.visible{
+
+display:block;
 
 }
