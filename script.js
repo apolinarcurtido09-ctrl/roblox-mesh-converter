@@ -1,24 +1,58 @@
-alert("script.js cargado");
+const meshInput=document.getElementById("meshInput");
 
-const input = document.getElementById("meshInput");
-const button = document.getElementById("readBtn");
-const info = document.getElementById("info");
+const readBtn=document.getElementById("readBtn");
 
-button.addEventListener("click", async () => {
+const info=document.getElementById("info");
 
-    alert("Botón pulsado");
+const APP_VERSION="0.1.0";
 
-    const file = input.files[0];
+readBtn.addEventListener("click",async()=>{
 
-    if (!file) {
-        info.textContent = "No seleccionaste ningún archivo.";
-        return;
-    }
+const file=meshInput.files[0];
 
-    info.textContent =
-`Archivo:
+if(!file){
+
+info.textContent="Selecciona un archivo .mesh";
+
+return;
+
+}
+
+try{
+
+const buffer=await file.arrayBuffer();
+
+const bytes=new Uint8Array(buffer);
+
+const header=new TextDecoder().decode(bytes.slice(0,32));
+
+info.textContent=
+`Roblox Mesh Studio
+
+Version:
+
+${APP_VERSION}
+
+Archivo:
+
 ${file.name}
 
 Tamaño:
-${file.size} bytes`;
+
+${file.size} bytes
+
+Cabecera:
+
+${header}`;
+
+}
+
+catch(error){
+
+info.textContent=
+
+"Error al leer el archivo.\n\n"+error;
+
+}
+
 });
